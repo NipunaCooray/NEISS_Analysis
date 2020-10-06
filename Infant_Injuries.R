@@ -20,30 +20,6 @@ injuries %>% group_by(product) %>% summarise(total = sum(weight)) %>%
   top_n(10, total) %>% arrange(desc(total))
 
 injuries$location <- as.factor(injuries$location)
-whereinjury <- injuries %>% group_by(location) %>% summarise(total = sum(weight))
-
-ggplot(data = whereinjury, 
-       aes(x = location, y = total)) +
-  geom_bar(stat = "identity", fill = "aquamarine4", alpha = 0.8) + 
-  theme(legend.position="none", axis.title.x = element_blank(),
-        axis.text.x= element_text(angle=45, hjust = 1)) +
-  ylab("Estimated number of injuries") +
-  ggtitle("Location of Injuries")
-
-
-
-
-sexageinjury <- injuries %>% 
-  group_by(sex, age = as.numeric(cut(age, breaks = (seq(0,100, by = 1))))-1) %>%
-  summarise(total = sum(weight))
-ggplot(data = sexageinjury[sexageinjury$sex != "None listed",], 
-       aes(x = age, y = total, color = sex)) +
-  geom_line(size = 1.5, alpha = 0.9) +
-  scale_color_manual(values = c("deeppink3", "deepskyblue4","peachpuff4")) + 
-  theme(legend.title=element_blank(), legend.justification=c(1,1), legend.position=c(1,1)) +
-  ylab("Estimated number of injuries") + xlab("Age") + 
-  ggtitle("Total Injuries by Age and Sex")
-
 
 ageinjury <- injuries %>% 
   group_by( age = as.numeric(cut(age, breaks = (seq(0,100, by = 1))))-1) %>%
@@ -64,3 +40,15 @@ ggplot(data = sexageinjurylessone,
   theme(legend.title=element_blank(), legend.justification=c(1,1), legend.position=c(1,1)) +
   ylab("Estimated number of infant injuries") + xlab("Age") + 
   ggtitle("Total Injuries of infants by Age and Sex")
+
+
+# Locations of infant injuries
+whereinjuryunder1 <- ageinjurylessone %>% group_by(location) %>% summarise(total = sum(weight))
+
+ggplot(data = whereinjuryunder1, 
+       aes(x = location, y = total)) +
+  geom_bar(stat = "identity", fill = "pink", alpha = 0.8) + 
+  theme(legend.position="none", axis.title.x = element_blank(),
+        axis.text.x= element_text(angle=45, hjust = 1)) +
+  ylab("Estimated number of injuries of infants") +
+  ggtitle("Location of Injuries of infants")
