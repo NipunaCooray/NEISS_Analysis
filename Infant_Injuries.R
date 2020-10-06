@@ -6,7 +6,6 @@ if(!require(neiss)) { install_github("hadley/neiss"); require(neiss)}
 if(!require(dplyr)) { install.packages("dplyr"); require(dplyr)}
 if(!require(ggplot2)) { install.packages("ggplot2"); require(ggplot2)}
 
-
 data(injuries)
 names(injuries)
 

@@ -1,0 +1,48 @@
+case_num
+A unique identifer for each case
+
+trmt_date
+Date of treatment
+
+psu
+Primary sampling unit (hospital) identifier
+
+weight
+Weights adjusted for non-response, hospitals mergers and changes in sampling frame. Sum these weights to get national estimate.
+
+stratum
+age
+Age. Rounded to nearest month if under than 2, otherwise rounded to nearest year
+
+sex
+Sex: male, female, or unknown.
+
+race
+7-level race
+
+race_other
+Optional free form text for other races
+
+diag
+Diagnosis code. If multiple diagnoses, this is the most severe
+
+diag_other
+Free text for "other" diagnoses
+
+body_part
+Most seriously injured body part
+
+disposition
+Final disposition of case after university visit
+
+location
+Locale where injury occurred.
+
+fmv
+Fire department involvement
+
+prod1,prod2
+Consumer product codes. Order is not important.
+
+narrative
+Description of what victim was doing, products involved, and locale of the incident (all upper case).
