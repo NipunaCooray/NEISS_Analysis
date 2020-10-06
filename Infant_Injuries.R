@@ -22,6 +22,7 @@ injuries %>% group_by(product) %>% summarise(total = sum(weight)) %>%
 
 injuries$location <- as.factor(injuries$location)
 whereinjury <- injuries %>% group_by(location) %>% summarise(total = sum(weight))
+
 ggplot(data = whereinjury, 
        aes(x = location, y = total)) +
   geom_bar(stat = "identity", fill = "aquamarine4", alpha = 0.8) + 
